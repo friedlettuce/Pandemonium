@@ -11,8 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
-    private float wallJumpCooldown;
     private float normalGravity;
+
+    private float horizontal_input;
+
+    private float wallJumpCooldown; // Also sets time until can move in air after jump off wall
+    private readonly float wallJumpUp = 6;
+    private readonly float wallJumpSide = 3;
 
     private void Awake()
     {
@@ -25,10 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float horizontal_input = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontal_input * speed, body.velocity.y);
+        horizontal_input = Input.GetAxis("Horizontal");
 
-        if(horizontal_input > 0.01f)
+        if(horizontal_input > .01f)
         {
             transform.localScale = Vector3.one;
         }
@@ -49,10 +53,6 @@ public class PlayerMovement : MonoBehaviour
         // Wall jump logic
         if(wallJumpCooldown > 0.2f)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Jump();
-            }
             body.velocity = new Vector2(horizontal_input * speed, body.velocity.y);
 
             if(onWall() && !isGrounded())
@@ -63,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 body.gravityScale = normalGravity;
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Jump();
             }
         }
         else
@@ -80,6 +85,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(onWall() && !isGrounded())
         {
+            if(horizontal_input == 0)
+            {
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpSide * 4, -wallJumpUp * 1.5f);
+                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpSide, wallJumpUp);
+            }
             wallJumpCooldown = 0;
         }
     }
@@ -94,5 +108,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
+    }
+
+    public bool canAttack()
+    {
+        return horizontal_input == 0 && isGrounded() & !onWall();
     }
 }
