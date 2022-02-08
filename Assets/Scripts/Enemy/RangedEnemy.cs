@@ -6,11 +6,15 @@ public class RangedEnemy : Enemy
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject[] fireballs;
 
+    [Header("Fireball Sound")]
+    [SerializeField] private AudioClip fireballSound;
+
     private void Awake()
     {
+        base.Awake();
         trigger = "rangedAttack";
         checkAlive = false;
-        base.Awake();
+        attackSound = fireballSound;
     }
 
     private void RangedAttack()

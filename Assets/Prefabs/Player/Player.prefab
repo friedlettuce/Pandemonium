@@ -195,6 +195,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  fireballSound: {fileID: 8300000, guid: 5233da01edb96774e90dcb630697c0a7, type: 3}
 --- !u!114 &444605858712110285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +214,8 @@ MonoBehaviour:
   components:
   - {fileID: 444605858712110282}
   - {fileID: 444605858712110284}
+  deathSound: {fileID: 8300000, guid: 0c1a8bf911da01c418bb38d1604fe429, type: 3}
+  hurtSound: {fileID: 8300000, guid: 9cc346a3fcd052f4794cd1ba7ddb99e6, type: 3}
 --- !u!1 &444605858768508428
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444605858768508428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.258, y: -0.533, z: 0}
+  m_LocalPosition: {x: 0.89, y: -0.533, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 444605858712110279}

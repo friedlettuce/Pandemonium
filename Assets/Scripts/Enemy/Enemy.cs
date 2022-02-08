@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour
     protected Health playerHealth;
     protected EnemyPatrol enemyPatrol;
     protected Animator anim;
+    protected AudioClip attackSound;
 
-    protected string trigger = "meleeAttack";
+    protected string trigger;
     protected bool checkAlive = true;
 
     // Start is called before the first frame update
@@ -28,6 +29,8 @@ public class Enemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        attackSound = null;
+        trigger = null;
     }
 
     // Update is called once per frame
@@ -41,6 +44,7 @@ public class Enemy : MonoBehaviour
             {
                 cooldownTimer = 0;
                 anim.SetTrigger(trigger);
+                if(attackSound != null) SoundManager.instance.PlaySound(attackSound);
             }
         }
 

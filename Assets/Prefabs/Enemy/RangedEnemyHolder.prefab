@@ -151,6 +151,8 @@ MonoBehaviour:
   components:
   - {fileID: 3477491572479836468}
   - {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 0c1a8bf911da01c418bb38d1604fe429, type: 3}
+  hurtSound: {fileID: 8300000, guid: 9cc346a3fcd052f4794cd1ba7ddb99e6, type: 3}
 --- !u!114 &3477491572479836468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +180,7 @@ MonoBehaviour:
   - {fileID: 1337207620454576204}
   - {fileID: 1337207618736456671}
   - {fileID: 1337207619607823344}
+  fireballSound: {fileID: 8300000, guid: 5233da01edb96774e90dcb630697c0a7, type: 3}
 --- !u!114 &5374687190002212066
 MonoBehaviour:
   m_ObjectHideFlags: 0
