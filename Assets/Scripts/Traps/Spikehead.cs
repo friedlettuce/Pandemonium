@@ -9,6 +9,9 @@ public class Spikehead : EnemyDamage
     [SerializeField] private float range; // to visibility in direction
     [SerializeField] private float checkDelay;
     [SerializeField] private LayerMask playerLayer;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip impactSound;
     
     private Vector3[] directions = new Vector3[4];
     private Vector3 dest;
@@ -64,11 +67,12 @@ public class Spikehead : EnemyDamage
     {
         dest = transform.position;
         attacking = false;
+        SoundManager.instance.PlaySound(impactSound);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        // stop when hit
-        Stop();
+        if(attacking)
+            Stop();
     }
 }

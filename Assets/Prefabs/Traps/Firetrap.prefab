@@ -100,6 +100,7 @@ MonoBehaviour:
   damage: 1
   activationDelay: 0.5
   activeTime: 1
+  fireSound: {fileID: 8300000, guid: 808877c49deb89640aa3f3e9d325b699, type: 3}
 --- !u!61 &5824319004831628133
 BoxCollider2D:
   m_ObjectHideFlags: 0

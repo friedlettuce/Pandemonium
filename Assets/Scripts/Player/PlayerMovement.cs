@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float normalGravity;
-
     private float horizontal_input;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpSound;
 
     private float wallJumpCooldown; // Also sets time until can move in air after jump off wall
     private readonly float wallJumpUp = 6;
@@ -66,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 Jump();
+
+                if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                    SoundManager.instance.PlaySound(jumpSound);
             }
         }
         else

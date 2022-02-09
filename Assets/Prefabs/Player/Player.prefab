@@ -156,6 +156,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  jumpSound: {fileID: 8300000, guid: d4200c6b94daa884b87ae88e03a83de6, type: 3}
 --- !u!95 &444605858712110283
 Animator:
   serializedVersion: 3
